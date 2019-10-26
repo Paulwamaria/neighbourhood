@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 from django.contrib.auth.models import User
 
 
@@ -9,19 +10,17 @@ class Neighborhood(models.Model):
     occupants = models.PositiveIntegerField()
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
 
     def __str__(self):
         return self.neighborhood_name
 
 
-    def save_neighbourhood(self):
+    def save_neighborhood(self):
         self.save()
 
     @classmethod
-    def delete_neighbourhood(cls,neighbourhood):
-        cls.objects.filter(neighbourhood=neighbourhood).delete()
+    def delete_neighborhood(cls,neighborhood):
+        cls.objects.filter(neighborhood=neighborhood).delete()
 
 
 
@@ -53,11 +52,11 @@ class Post(models.Model):
     title = models.CharField(max_length=60)
     content = models.TextField()
     neighborhood = models.ForeignKey(Neighborhood, related_name='posts', on_delete=models.CASCADE)
-    logo = models.ImageField(upload_to='media/blog/', blank = True, null =True)
+    image = models.ImageField(upload_to='media/blog/', blank = True, null =True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    business_email = models.EmailField()
+    
 
 
     def __str__(self):
