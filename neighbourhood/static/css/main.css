@@ -79,3 +79,8 @@
     background: #fff;
     color: #000;
 }
+.prof-img{
+    width:15%;
+    height:auto;
+    border-radius: 50%;
+}
