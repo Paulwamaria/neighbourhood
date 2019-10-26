@@ -43,23 +43,23 @@
                     </div>
                     <div class="navbar-nav d-inline-flex ">
 
-               
+                        {% if user.is_authenticated %}
                         <div class="d-inline-flex prof-links">
-                            <a class="nav-item nav-link mr-2 text-dark" href="">Logout</a>
+                            <a class="nav-item nav-link mr-2 text-dark" href="{% url 'logout' %}">Logout</a>
 
-                            
+
 
 
                         </div>
-                  
 
+                        {% else %}
                         <div class="d-inline-flex">
-                            <a class="nav-item nav-link mr-2 text-dark" href="">Login</a>
-                            <a class="nav-item nav-link ml-2 text-dark" href="">Register</a>
-                   
-                        </div>
+                            <a class="nav-item nav-link mr-2 text-dark" href="{% url 'login' %}">Login</a>
+                            <a class="nav-item nav-link ml-2 text-dark" href="{% url 'register' %}">Register</a>
 
-                     
+                        </div>
+                        {% endif %}
+
 
 
                     </div>
@@ -81,10 +81,10 @@
 
                     <a href="/" class="text-dark">Home</a>
 
- 
+
 
                     <a href="#" class="text-dark">About</a>
-                
+
                 </navs>
 
             </div>
