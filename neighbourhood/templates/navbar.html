@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="header">
+
+
+            <nav class="navbar navbar-inverse bg-success">
+                <div class="container-fluid nv">
+                    <div class="navbar-header">
+
+
+
+
+
+                    </div>
+
+                    <div class=" navbar-right">
+
+                        <a class="navbar-brand text-dark inst d-inline-flex" href="{% url 'home' %}"
+                            id="neig">Neighborhood</a>
+
+                        <form class="navbar-form d-inline-flex ml-5" role="search" action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="search businesses"
+                                    name="search_business">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i
+                                            class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                    <div class="navbar-nav d-inline-flex ">
+
+               
+                        <div class="d-inline-flex prof-links">
+                            <a class="nav-item nav-link mr-2 text-dark" href="">Logout</a>
+
+                            
+
+
+                        </div>
+                  
+
+                        <div class="d-inline-flex">
+                            <a class="nav-item nav-link mr-2 text-dark" href="">Login</a>
+                            <a class="nav-item nav-link ml-2 text-dark" href="">Register</a>
+                   
+                        </div>
+
+                     
+
+
+                    </div>
+
+                </div>
+
+                <div id="btn" class="" onclick="closeOpen()">
+                    <div id="d1"></div>
+                    <div id="d2"></div>
+                    <div id="d3"></div>
+                </div>
+            </nav>
+
+            <div id="navbox">
+
+                <navs id="navs" class="mt-0 text-dark">
+
+
+
+                    <a href="/" class="text-dark">Home</a>
+
+ 
+
+                    <a href="#" class="text-dark">About</a>
+                
+                </navs>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
