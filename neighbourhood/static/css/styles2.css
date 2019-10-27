@@ -1,0 +1,21 @@
+body{
+    background-image: url(../media/neigho1.jpg);
+    background-repeat: repeat-y;
+    height:100vh;
+}
+.container_fluid{
+    height: 100%;
+}
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 150vh;
+
+    
+
+}
+.article-image{
+    max-width:500px;
+    height:auto;
+ 
+
+}
