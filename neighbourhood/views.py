@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from .models import Neighborhood,Post
+from .models import Neighborhood,Post,Business
 from users.models import Profile
 
 def index(request):
@@ -47,3 +47,33 @@ class PostCreateView(LoginRequiredMixin,CreateView):
         form.instance.user = self.request.user
         form.instance.neighborhood = Neighborhood.objects.get(neighborhood_name = self.request.user.profile.location)
         return super().form_valid(form)
+
+class BusinessCreateView(LoginRequiredMixin,CreateView):
+     
+    model = Business
+    success_url = ('/')
+    fields = ['business_name','logo','description','business_email']
+
+    def form_valid(self,form):
+        form.instance.user = self.request.user
+        form.instance.neighborhood = Neighborhood.objects.get(neighborhood_name = self.request.user.profile.location)
+        return super().form_valid(form)
+
+
+@login_required
+def business_list(request):
+  
+    profile=Profile.objects.get(user=request.user)
+    businesses = Business.objects.filter(neighborhood__neighborhood_name=profile.location)
+
+ 
+
+    context={
+        "businesses":businesses
+    }
+
+    return render(request,'neighbourhood/businesses.html',context)
+
+
+
+  
