@@ -130,3 +130,46 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
             return True
 
         return False
+
+
+
+class BusinessUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
+     
+    model = Business
+
+    fields = ['business_name','logo','description','business_email']
+
+
+    def form_valid(self,form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+    def test_func(self):
+        business = self.get_object()
+
+        if self.request.user == business.user:
+            return True
+
+        return False
+
+    def get_redirect_url(self,pk, *args, **kwargs):
+        obj = get_object_or_404(Business, pk = pk)
+        url= obj.get_absolute_url()
+      
+      
+        return url
+
+
+class BusinessDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
+    model = Business
+    success_url = ('/')
+    def test_func(self):
+        business = self.get_object()
+
+        if self.request.user == business.user:
+            return True
+
+        return False
+
+
