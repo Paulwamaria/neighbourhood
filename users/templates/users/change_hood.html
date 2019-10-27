@@ -1,0 +1,39 @@
+{% extends 'neighbourhood/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="content-section container">
+    <div class="media">
+        <img class=" prof-img" src="{{user.profile.profile_pic.url}}" id="prof-pic">
+        <div class="media-body">
+            <h2 class="account-heading">{{user.username}}</h2>
+            <p class="text-secondary">{{user.email}}</p>
+        </div>
+    </div>
+
+    <form action="" method="POST" enctype="multipart/form-data" class="">
+        {% csrf_token %}
+        <fieldset class="form-group ">
+            <legend class="border-bottom mb-4 text-success text-center"> Select Your new Neighbourhood</legend>
+            {{n_form|crispy}}
+
+            {% for radio in n_form.location %}
+
+            <label class="text-success" for="{{ radio.id_for_label }}">
+                {{ radio.choice_label }}
+                <span class="radio">{{ radio.tag }}</span>
+            </label>
+            {% endfor %}
+
+        </fieldset>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-success btn-sm sign form-control" value="Switch Neighborhood" id='update'>
+        </div>
+
+
+
+    </form>
+
+    {% endblock %}
