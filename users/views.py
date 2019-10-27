@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import NeighborhoodRegistrationForm, UserUpdateForm, ProfileUpdateForm
+from .forms import NeighborhoodRegistrationForm, UserUpdateForm, ProfileUpdateForm,ChangeNeighborhoodForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Profile
 
@@ -47,3 +47,26 @@ def profile(request):
         'p_form':p_form
     }
     return render(request, 'users/profile.html',context)
+
+
+
+@login_required
+def change_neighborhood(request):
+    if request.method == 'POST':
+        n_form = ChangeNeighborhoodForm(request.POST,instance = request.user.profile)
+        
+          
+        if n_form.is_valid():
+            n_form.save()
+         
+    else:
+        n_form = ChangeNeighborhoodForm(instance = request.user.profile)
+        
+      
+
+
+    context={
+        'n_form':n_form,
+      
+    }
+    return render(request, 'users/change_hood.html',context)
