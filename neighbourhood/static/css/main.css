@@ -84,3 +84,32 @@
     height:auto;
     border-radius: 50%;
 }
+
+#imag {
+    margin-top:2px;
+    width: 400px;
+    max-height: 300px;
+    border-radius: 5%;
+
+}
+.card{
+    min-height: 400px;
+    margin-left:22px;
+}
+#imag:hover {
+    opacity: 0.5;
+}
+
+.content-section {
+    background-color:rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    margin-top:20px;
+    color:white;
+}
+#auth-blog{
+    width:20%;
+    height:auto;
+}
