@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
+from neighbourhood.models import Neighborhood
 
 
 
@@ -63,3 +64,36 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['profile_pic','bio', 'location']
+
+
+
+
+NeighborhoodChoices = [
+   
+       ('Moringa','Moringa'),
+        ('Karen','Karen'),
+        ('Kawangware','Kawangware'),
+
+]
+
+
+class ChangeNeighborhoodForm(forms.ModelForm):
+    location= forms.CharField(label='Which Neighborhood are changing to?', widget=forms.RadioSelect(choices=NeighborhoodChoices))
+
+    class Meta:
+        model = Profile
+
+        fields = ['location']
+
+
+
+    def save(self, commit=True):
+        profile =super(ChangeNeighborhoodForm, self).save(commit=False)
+        profile.location = self.cleaned_data['location']
+
+
+        if commit:
+            profile.save()
+
+
+        return profile.location
