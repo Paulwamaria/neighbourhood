@@ -25,6 +25,7 @@ urlpatterns = [
     path('',include('neighbourhood.urls')),
     path('register/', user_views.register, name='register'),
     path('profile/',user_views.profile, name = 'profile'),
+    path('neighborhood/change/',user_views.change_neighborhood, name = 'change-hood'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
 ]
