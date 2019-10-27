@@ -2,6 +2,54 @@
 
 
 {% block content %}
-<h1 class="text-success">{{message}}</h1>
+<h1 class="text-success text-center mt-5 mb-5">{{message}}</h1>
 
-{% endblock %}
+
+
+<div class=" text-center">
+
+
+
+
+    <div class="container-fluid all">
+        <div class="row">
+            {% for neigh in neighs %}
+
+            <div class="col-md-4">
+                <div class=" card ">
+
+                    <div class="card-body">
+                        <a href=""><img src="{{neigh.image.url}}" class="img-responsive imgs" id='imag' alt=" "></a>
+
+                        <h6 class="text-center text-info mt-3">{{neigh.neighborhood_name}}</h6>
+
+
+
+                    </div>
+
+                    <div class="card-footer">
+
+                       
+
+                        {% ifequal neigh.neighborhood_name request.user.profile.location %}
+                        <a href="{% url 'posts' %}" class=""> View recent updates on your Neighbourhood?</a>
+
+                        {% endifequal %}
+
+                  
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% endblock %}
