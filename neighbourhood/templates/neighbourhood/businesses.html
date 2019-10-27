@@ -1,0 +1,82 @@
+{% extends 'neighbourhood/base2.html' %}
+
+{% block  content %}
+
+<h3 class="text-center text-success mt-5">These are the businesses available within {{user.profile.location}} </h3>
+ 
+        {% for business in businesses %}
+        <card class="media content-section overlay2">
+            <div class="card-header">
+                    <img src="{{business.user.profile.profile_pic.url}}" class="rounded-circle article-image" id="auth-blog">
+                    <a class="mr-2 text-success" href="">{{ business.user.username }}</a>
+            </div>
+       
+            <div class="card-body">
+                <div class="">
+                  
+                    <small class="text-muted">{{ post.created_on|date:'F d, Y' }}</small>
+
+                    {% if business.logo %}
+                    <img src="{{business.logo.url}}" class=" article-image" id="">
+
+                    {% endif %}
+                </div>
+                <h2><a class="article-title text-success" href="">{{ business.business_name }}</a></h2>
+                <p class="article-content">{{ business.description }}</p>
+                <p><strong>Contacts: <a href="mailto:business.business_email">{{business.business_email}}</a></strong></p>
+            </div>
+        </card>
+
+        {% endfor %}
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+<div class="container-fluid all">
+        <div class="row">
+            {% for project in projects %}
+
+            <div class="col-md-3">
+                <div class=" card ">
+
+                    <div class="card-body">
+                        <a href="{{project.project_link}}"><img src="{{project.image.url}}" class="img-responsive imgs" id='imag' alt=" "></a>
+<!-- 
+                        <h6 class="text-center text-info">{{project.title}}</h6> -->
+                        <a href="{{project.project_link}}"> <h6 class="text-center text-info">{{project.title}}</h6></a>
+                        <p class="text-dark image-descrips" id="image-descrip">{{project.description |slice:":50"}}...</p>
+
+                    </div>
+
+                    <div class="card-footer">
+
+                        <p><img class=" prof-img" src="{{project.profile.profile_pic.url}}" id="prof-pic"> By {{project.profile.user.username}} on {{project.datepublished}}</p>
+
+                        <a href="{% url 'project-detail' project.id %}">Vote</a> {% if project.profile == user.profile %}
+
+
+                        <a class="ml-3" href="{% url 'project-detail' project.id %}">Edit</a> {% endif %}
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
