@@ -76,4 +76,13 @@ def business_list(request):
 
 
 
-  
+def display_profile(request,username):
+    profile = Profile.objects.get(user__username= username)
+
+    user_posts = Post.objects.filter(user =profile.user).order_by('created_on')
+
+    context={
+        "profile":profile,
+        "user_posts":user_posts
+    }
+    return render(request,'neighbourhood/profile_detail.html',context)
