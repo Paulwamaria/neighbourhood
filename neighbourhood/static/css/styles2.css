@@ -3,14 +3,15 @@ body{
     background-repeat: repeat-y;
     height:100vh;
 }
-.container_fluid{
+/* .container_fluid{
     height: 100%;
-}
+} */
 .overlay {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.75);
     height: 150vh;
-
-    
+}
+.overlay2, .side-b {
+    background-color: rgba(0, 0, 0, 0.75);
 
 }
 .article-image{
@@ -18,4 +19,7 @@ body{
     height:auto;
  
 
+}
+.main-cols{
+    background-color: black;
 }

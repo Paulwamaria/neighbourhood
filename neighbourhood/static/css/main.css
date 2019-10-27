@@ -101,9 +101,10 @@
 }
 
 .content-section {
-    background-color:rgba(0,0,0,0.5);
+
     padding: 10px 20px;
-    border: 1px solid #dddddd;
+    padding-top:10px;
+    border: 1px solid #00ff00;
     border-radius: 3px;
     margin-bottom: 20px;
     margin-top:20px;
@@ -112,4 +113,7 @@
 #auth-blog{
     width:20%;
     height:auto;
+}
+.prof-links a:hover{
+    background-color:white;
 }
