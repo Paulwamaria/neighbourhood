@@ -91,7 +91,10 @@
 
 
                     <a href="#" class="text-dark">About</a>
+
                     {% if user.is_authenticated %}
+
+                    <a href="{% url 'profile-detail' user.username %}" class="text-dark">Profile</a>
 
                     <a href="#" class="text-dark"> Current Hood: {{user.profile.location}}</a>
 
