@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .models import Neighborhood,Post
 from users.models import Profile
@@ -32,3 +34,16 @@ def post(request):
     }
 
     return render(request,'neighbourhood/posts.html',context)
+
+
+
+class PostCreateView(LoginRequiredMixin,CreateView):
+     
+    model = Post
+    success_url = ('/')
+    fields = ['title','image','content']
+
+    def form_valid(self,form):
+        form.instance.user = self.request.user
+        form.instance.neighborhood = Neighborhood.objects.get(neighborhood_name = self.request.user.profile.location)
+        return super().form_valid(form)
