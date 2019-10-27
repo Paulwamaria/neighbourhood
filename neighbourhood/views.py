@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.views.generic import CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView,UpdateView,DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from .models import Neighborhood,Post,Business
 from users.models import Profile
@@ -86,3 +86,47 @@ def display_profile(request,username):
         "user_posts":user_posts
     }
     return render(request,'neighbourhood/profile_detail.html',context)
+
+
+
+
+
+
+class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
+     
+    model = Post
+
+    fields = ['title','image','content']
+
+
+    def form_valid(self,form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+    def test_func(self):
+        post = self.get_object()
+
+        if self.request.user == post.user:
+            return True
+
+        return False
+
+    def get_redirect_url(self,pk, *args, **kwargs):
+        obj = get_object_or_404(Post, pk = pk)
+        url= obj.get_absolute_url()
+      
+      
+        return url
+
+
+class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
+    model = Post
+    success_url = ('/')
+    def test_func(self):
+        post = self.get_object()
+
+        if self.request.user == post.user:
+            return True
+
+        return False
