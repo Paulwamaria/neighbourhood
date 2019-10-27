@@ -48,7 +48,10 @@
 
                         {% if user.is_authenticated %}
                         <div class="d-inline-flex prof-links">
-                            <a class="nav-item nav-link mr-2 text-dark" href="{% url 'post-create' %}">Create Post</a>
+                            <a class="nav-item nav-link mr-2 text-dark" href="{% url 'business' %}">Businesses</a>
+
+                            <a class="nav-item nav-link mr-2 text-dark" href="{% url 'posts' %}">News</a>
+                         
                             <a class="nav-item nav-link mr-2 text-dark" href="{% url 'logout' %}">Logout</a>
 
 
@@ -93,6 +96,8 @@
                     <a href="#" class="text-dark"> Current Hood: {{user.profile.location}}</a>
 
                     <a class="nav-item nav-link mr-2 text-dark" href="{% url 'post-create' %}">Create Post</a>
+
+                    <a class="nav-item nav-link mr-2 text-dark" href="{% url 'business-create' %}">Create Business</a>
 
 
                     {% endif %}
