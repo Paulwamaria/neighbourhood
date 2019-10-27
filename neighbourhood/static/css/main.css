@@ -136,3 +136,7 @@
    width:90%;
     }
   }
+  .full-profile{
+    max-width: 640px;
+    height: auto;
+}
