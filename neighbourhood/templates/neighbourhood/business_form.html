@@ -1,0 +1,47 @@
+{%extends "neighbourhood/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="row">
+       
+        <div class="col-md-2"></div>
+        <div class="col-md-7">
+            {% if form.errors %}
+            <p> Some Information Might be Incorrect </p>
+            {% endif %}
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                   
+                </div>
+                <div class="text-muted">
+                    <h4 class="text-center text-success mt-5">Let others know the Businesses availabe in the neighborhood</h4>
+                </div>
+                <div class="panel-body">
+
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success  btn-sm sign form-control" value="Upload"
+                                id='sign'>
+                            
+                        </div>
+
+
+
+
+                    </form>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+{% endblock %}
