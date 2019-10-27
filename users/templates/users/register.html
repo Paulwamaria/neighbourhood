@@ -21,18 +21,18 @@
                 <div class="text-muted">
                     <p>Are you a member? <a href="#">Login Now</a></p>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body bg-success">
 
                     <form action="" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{form|crispy}}
                         <div class="form-group">
-                            <input type="submit" class="btn btn-success btn-sm sign form-control" value="Sign Up"
+                            <input type="submit" class="btn btn-success btn-sm btn-outline-primary  form-control" value="Sign Up"
                                 id='sign'>
                         </div>
 
                         <div class="text-muted">
-                            <p class="text-center">By signing up, you agree to our Terms , Data Policy and Cookies
+                            <p class="text-center text-white">By signing up, you agree to our Terms , Data Policy and Cookies
                                 Policy .</p>
                         </div>
 
