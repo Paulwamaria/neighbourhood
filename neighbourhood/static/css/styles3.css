@@ -1,5 +1,5 @@
 body{
-    background-image: url(../media/neigho1.jpg);
+    background-image: url(../media/city_in_valley-wallpaper-1920x1200.jpg);
     background-repeat: repeat-y;
     height:100vh;
 }
@@ -8,7 +8,7 @@ body{
 } */
 .overlay {
     background-color: rgba(0, 0, 0, 0.75);
-    height: 200vh;
+    height: 150vh;
 }
 .overlay2, .side-b {
     background-color: rgba(0, 0, 0, 0.75);
