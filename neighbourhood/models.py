@@ -68,3 +68,47 @@ class Post(models.Model):
 
     def delete_post(self):
         self.delete()
+
+
+class Notification(models.Model):
+    content = models.TextField()
+    neighborhood = models.ForeignKey(Neighborhood, related_name='notifications', on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+
+
+    def __str__(self):
+        return self.content
+
+
+    def save_notification(self):
+        self.save()
+
+    def delete_notification(self):
+        self.delete()
+
+
+
+class EmergencyContact(models.Model):
+ 
+    police_number = models.PositiveIntegerField(blank=True, null = True)
+    ambulance_number = models.PositiveIntegerField(blank=True, null = True)
+    fireservice_number = models.PositiveIntegerField(blank=True, null = True)
+    neighborhood = models.ForeignKey(Neighborhood, related_name='contacts', on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    
+
+
+    def __str__(self):
+        return f'Police {self.police_number}, Ambulance {self.ambulance_number}, Fireservice {self.fireservice_number}'
+
+
+    def save_contacts(self):
+        self.save()
+
+    def delete_contacts(self):
+        self.delete()
