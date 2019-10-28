@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PostCreateView,BusinessCreateView,PostUpdateView,PostDeleteView, BusinessDeleteView, BusinessUpdateView
+from .views import PostCreateView,NotificationCreateView,BusinessCreateView,PostUpdateView,PostDeleteView, BusinessDeleteView, BusinessUpdateView
 from . import views
 
 
@@ -8,6 +8,7 @@ urlpatterns=[
     path('posts/',views.post,name='posts'),
     path('business/',views.business_list,name='business'),
     path('post/new/',PostCreateView.as_view(), name = 'post-create'),
+    path('notification/new/',NotificationCreateView.as_view(), name = 'notification-create'),
     path('business/new/',BusinessCreateView.as_view(), name = 'business-create'),
     path('profile/details/<str:username>/',views.display_profile, name = 'profile-detail'),
     path('post/<int:pk>/update/',PostUpdateView.as_view(), name = 'post-update'),
