@@ -3,12 +3,13 @@ from django.contrib.auth.models import User
 from django.views.generic import CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
-from .models import Neighborhood,Post,Business
+from .models import Neighborhood,Post,Business,Notification, EmergencyContact
 from users.models import Profile
 
 def index(request):
     message = " Whats Going on in your Neighbourhood?"
     neighborhoods = Neighborhood.objects.all()
+
 
 
     context = {
@@ -26,11 +27,15 @@ def post(request):
   
     profile=Profile.objects.get(user=request.user)
     posts = Post.objects.filter(neighborhood__neighborhood_name=profile.location)
-
+    notifications = Notification.objects.filter(neighborhood__neighborhood_name=profile.location)
+    contacts = EmergencyContact.objects.filter(neighborhood__neighborhood_name=profile.location)
+  
     
 
     context={
-        "posts":posts
+        "posts":posts,
+        "notifications":notifications,
+        "contacts":contacts
     }
 
     return render(request,'neighbourhood/posts.html',context)
@@ -42,6 +47,17 @@ class PostCreateView(LoginRequiredMixin,CreateView):
     model = Post
     success_url = ('/')
     fields = ['title','image','content']
+
+    def form_valid(self,form):
+        form.instance.user = self.request.user
+        form.instance.neighborhood = Neighborhood.objects.get(neighborhood_name = self.request.user.profile.location)
+        return super().form_valid(form)
+
+class NotificationCreateView(LoginRequiredMixin,CreateView):
+     
+    model = Notification
+    success_url = ('/')
+    fields = ['content']
 
     def form_valid(self,form):
         form.instance.user = self.request.user
@@ -65,11 +81,15 @@ def business_list(request):
   
     profile=Profile.objects.get(user=request.user)
     businesses = Business.objects.filter(neighborhood__neighborhood_name=profile.location)
+    notifications = Notification.objects.filter(neighborhood__neighborhood_name=profile.location)
+    contacts = EmergencyContact.objects.filter(neighborhood__neighborhood_name=profile.location)
 
  
 
     context={
-        "businesses":businesses
+        "businesses":businesses,
+        "notifications":notifications,
+        "contacts":contacts
     }
 
     return render(request,'neighbourhood/businesses.html',context)
@@ -136,7 +156,7 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
 class BusinessUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
      
     model = Business
-
+    success_url = ('/')
     fields = ['business_name','logo','description','business_email']
 
 
