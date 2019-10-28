@@ -26,7 +26,7 @@
                 <div class="edit">
                         {% if post.user == user %}
                         <div>
-                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' post.id %}">Update</a>
+                            <a class="btn btn-success btn-sm mt-1 mb-1" href="{% url 'post-update' post.id %}">Update</a>
                             <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' post.id %}">Delete</a>
                         </div>
     

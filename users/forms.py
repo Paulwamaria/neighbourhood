@@ -70,7 +70,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
 NeighborhoodChoices = [
    
-       ('Moringa','Moringa'),
+       ('Golf Course','Golf Course'),
         ('Karen','Karen'),
         ('Kawangware','Kawangware'),
 
