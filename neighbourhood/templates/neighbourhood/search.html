@@ -1,0 +1,39 @@
+{%extends 'neighbourhood/base.html'%}
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        {% if businesses|length > 0 %}
+        <h1 class="text-info text-center">Found {{ businesses|length }} results of searched term {{message}}</h1>
+        {% else %}
+        <h1 class="text-info text-center"> Found 0 results for the search term {{message}}</h1>
+        {% endif %}
+
+    </div>
+
+    <div class="row">
+
+        {% if businesses %}
+        {% for business in businesses %}
+        <div class="col-md-4">
+            <div class="  ">
+               
+               
+                <figure>
+                    <a href="{% url 'business-detail' business.id %}"><img src="{{business.logo.url}}" class="img-responsive imgs" id='imag' alt="business screenshot"></a>
+                        
+                        <figcaption><a href="{% url 'business-detail' business.id %}">{{business.business_name}}</a></figcaption>
+                </figure>
+            
+
+
+
+            </div>
+           
+
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
