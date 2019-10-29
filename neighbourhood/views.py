@@ -6,6 +6,12 @@ from django.contrib.auth.decorators import login_required
 from .models import Neighborhood,Post,Business,Notification, EmergencyContact
 from users.models import Profile
 
+
+
+def about(request):
+    return render(request,'neighbourhood/about.html')
+
+
 def index(request):
     message = " Whats Going on in your Neighbourhood?"
     neighborhoods = Neighborhood.objects.all()
@@ -191,5 +197,22 @@ class BusinessDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
             return True
 
         return False
+
+
+
+
+
+def search_results(request):
+    if 'search_business' in request.GET and request.GET["search_business"]:
+        search_term = request.GET.get("search_business")
+        
+        searched_businesses = Business.objects.filter(business_name__icontains=search_term)
+        message=search_term
+        return render(request, "neighbourhood/search.html", {"businesss":searched_businesses, "message":message})
+
+    else:
+        message = "Search term not found"
+
+        return render(request,'neighbourhood/search.html',{"message":message})
 
 
