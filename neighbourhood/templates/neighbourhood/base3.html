@@ -50,7 +50,7 @@
 
 
                             <h3 class="text-success bg-white text-center">Emergency Contacts</h3>
-                            <p class=''>Whats up in the hood??.
+                            <p class=''>Incase of emergency, contact:
                                 <ul class="list-group text-white">
                                     {% ifnotequal contacts.count 0 %}
                                     {% for contact in contacts %}
@@ -58,7 +58,7 @@
                                     <li class="list-group-item list-group-item-light text-primary bg-white">
                                         <strong>Police:</strong> {{contact.police_number}}</li>
                                     <li class="list-group-item list-group-item-light text-primary bg-white">
-                                        <strong>Ambulance:</strong> {{contact.ambulance_number}}</li>
+                                        <strong> Amref Flying Doctors:</strong> {{contact.ambulance_number}}</li>
 
                                     <li class="list-group-item list-group-item-light text-primary bg-white">
                                         <strong>Fire Brigade:</strong> {{contact.fireservice_number}}</li>
